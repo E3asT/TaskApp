@@ -24,10 +24,3 @@ struct TaskData: Identifiable, Hashable {
               self.taskDone.toggle()
        }
 }
-
-var taskRow = [
-       TaskData(name: "Bake cookies", taskDone: false),
-       TaskData(name: "Clean the shower", taskDone: false),
-       TaskData(name: "Dentiste", information: "At 9pm", taskDone: false, moreInformation: true),
-       TaskData(name: "Have a beer", information: "At Leonard place", taskDone: false, moreInformation: true)
-]

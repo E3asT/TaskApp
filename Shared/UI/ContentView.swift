@@ -9,11 +9,17 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+       @State var taskRow = [
+              TaskData(name: "Bake cookies", taskDone: false),
+              TaskData(name: "Clean the shower", taskDone: false),
+              TaskData(name: "Dentiste", information: "At 9pm", taskDone: false, moreInformation: true),
+              TaskData(name: "Have a beer", information: "At Leonard place", taskDone: false, moreInformation: true)
+       ]
        @State var taskCount = 0
        
        var body: some View {
               VStack {
-                     BannerView(taskCount: $taskCount)
+                     BannerView(taskRow: $taskRow ,taskCount: $taskCount)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 16)
                      
@@ -35,6 +41,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct BannerView: View {
+       @Binding var taskRow: [TaskData]
        @Binding var taskCount: Int
        
        var body: some View {
@@ -53,16 +60,17 @@ struct BannerView: View {
                      .padding(.bottom, 10)
                      
                      HStack {
-                            if taskCount > 0 {
+                            if taskRow.count == taskCount {
+                                   Text("All tasks are done")
+                            } else if taskCount > 0 {
                                    Text("\(taskCount) tasks done")
-                                          .font(.footnote)
                             } else {
                                    Text("\(taskCount) task done")
-                                          .font(.footnote)
                             }
                             
                             Spacer()
                      }
+                     .font(.footnote)
               }
        }
        
@@ -72,7 +80,7 @@ struct BannerView: View {
               let moreInformation = true
               let taskDone = false
               let newTask = TaskData(name: name, information: information, taskDone: taskDone, moreInformation: moreInformation)
-
+              
               taskRow.append(newTask)
        }
 }

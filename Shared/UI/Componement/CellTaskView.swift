@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CellTaskView: View {
-       @State var task: TaskData = taskRow[3]
+       @State var task: TaskData
        @Binding var taskCount: Int
        
        var body: some View {
@@ -44,7 +44,7 @@ struct CellTaskView: View {
 
 struct CellTaskView_Previews: PreviewProvider {
        static var previews: some View {
-              CellTaskView(taskCount: .constant(1))
+              CellTaskView(task: TaskData(name: "Dentiste", information: "At 9pm", taskDone: false, moreInformation: true), taskCount: .constant(1))
        }
 }
 
