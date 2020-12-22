@@ -9,10 +9,10 @@ import Foundation
 
 struct TaskData: Identifiable, Hashable {
        var id = UUID()
-       var name: String
-       var information = ""
+       var title: String
+       var note = ""
        var taskDone: Bool
-       var moreInformation = false
+       var isThereNote = false
        
        var update: Bool {
               let update = taskDone

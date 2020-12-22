@@ -17,6 +17,10 @@
 		7A9FB9242588B51600E872E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB90A2588B51600E872E7 /* Assets.xcassets */; };
 		7A9FB9372588B58D00E872E7 /* TaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB9362588B58D00E872E7 /* TaskData.swift */; };
 		7A9FB93E2588B5B900E872E7 /* CellTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB93D2588B5B900E872E7 /* CellTaskView.swift */; };
+		7AABEB01258CA69100C40D03 /* TaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB9362588B58D00E872E7 /* TaskData.swift */; };
+		7AABEB04258CA69A00C40D03 /* CellTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB93D2588B5B900E872E7 /* CellTaskView.swift */; };
+		7AF87CFE25929C8500AA8D0E /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF87CFD25929C8500AA8D0E /* AddTaskView.swift */; };
+		7AF87CFF25929C8500AA8D0E /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF87CFD25929C8500AA8D0E /* AddTaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,7 @@
 		7A9FB91A2588B51600E872E7 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		7A9FB9362588B58D00E872E7 /* TaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskData.swift; sourceTree = "<group>"; };
 		7A9FB93D2588B5B900E872E7 /* CellTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTaskView.swift; sourceTree = "<group>"; };
+		7AF87CFD25929C8500AA8D0E /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				7A9FB9082588B51500E872E7 /* ContentView.swift */,
+				7AF87CFD25929C8500AA8D0E /* AddTaskView.swift */,
 				7A9FB93C2588B5A000E872E7 /* Componement */,
 			);
 			path = UI;
@@ -119,6 +125,7 @@
 		7A9FB9352588B57800E872E7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				7A9FB9362588B58D00E872E7 /* TaskData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -127,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				7A9FB93D2588B5B900E872E7 /* CellTaskView.swift */,
-				7A9FB9362588B58D00E872E7 /* TaskData.swift */,
 			);
 			path = Componement;
 			sourceTree = "<group>";
@@ -176,7 +182,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					7A9FB90E2588B51600E872E7 = {
 						CreatedOnToolsVersion = 12.2;
@@ -232,6 +238,7 @@
 				7A9FB91D2588B51600E872E7 /* TaskAppApp.swift in Sources */,
 				7A9FB91B2588B51600E872E7 /* TaskApp.xcdatamodeld in Sources */,
 				7A9FB93E2588B5B900E872E7 /* CellTaskView.swift in Sources */,
+				7AF87CFE25929C8500AA8D0E /* AddTaskView.swift in Sources */,
 				7A9FB9372588B58D00E872E7 /* TaskData.swift in Sources */,
 				7A9FB91F2588B51600E872E7 /* ContentView.swift in Sources */,
 			);
@@ -243,6 +250,9 @@
 			files = (
 				7A9FB91E2588B51600E872E7 /* TaskAppApp.swift in Sources */,
 				7A9FB91C2588B51600E872E7 /* TaskApp.xcdatamodeld in Sources */,
+				7AABEB04258CA69A00C40D03 /* CellTaskView.swift in Sources */,
+				7AF87CFF25929C8500AA8D0E /* AddTaskView.swift in Sources */,
+				7AABEB01258CA69100C40D03 /* TaskData.swift in Sources */,
 				7A9FB9202588B51600E872E7 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +422,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 2RAX2PA3F2;
@@ -436,6 +447,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 2RAX2PA3F2;

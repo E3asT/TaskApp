@@ -10,25 +10,34 @@ import CoreData
 
 struct ContentView: View {
        @State var taskRow = [
-              TaskData(name: "Bake cookies", taskDone: false),
-              TaskData(name: "Clean the shower", taskDone: false),
-              TaskData(name: "Dentiste", information: "At 9pm", taskDone: false, moreInformation: true),
-              TaskData(name: "Have a beer", information: "At Leonard place", taskDone: false, moreInformation: true)
+              TaskData(title: "Bake cookies", taskDone: false),
+              TaskData(title: "Clean the shower", taskDone: false),
+              TaskData(title: "Dentiste", note: "At 9pm", taskDone: false, isThereNote: true),
+              TaskData(title: "Have a beer", note: "At Leonard place", taskDone: false, isThereNote: true)
        ]
        @State var taskCount = 0
+       @State var action = false
        
        var body: some View {
-              VStack {
-                     BannerView(taskRow: $taskRow ,taskCount: $taskCount)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 16)
-                     
-                     Spacer()
-                     List {
-                            ForEach(taskRow) { task in
-                                   CellTaskView(task: task, taskCount: $taskCount)
+              ZStack {
+                     VStack {
+                            BannerView(taskRow: $taskRow ,taskCount: $taskCount, action: $action)
+                                   .padding(.vertical, 10)
+                                   .padding(.horizontal, 16)
+                            
+                            Spacer()
+                            List {
+                                   ForEach(taskRow) { task in
+                                          CellTaskView(task: task, taskCount: $taskCount)
+                                   }
                             }
                      }
+                     
+                     AddTaskView(action: $action)
+                            .cornerRadius(15)
+                            .offset(y: action ? 0 : 1000)
+                            .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0.0, y: -5)
+                            .animation(.spring())
               }
        }
 }
@@ -36,13 +45,13 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
        static var previews: some View {
               ContentView()
-              
        }
 }
 
 struct BannerView: View {
        @Binding var taskRow: [TaskData]
        @Binding var taskCount: Int
+       @Binding var action: Bool
        
        var body: some View {
               VStack {
@@ -53,7 +62,7 @@ struct BannerView: View {
                             Image(systemName: "plus.circle.fill")
                                    .foregroundColor(.green)
                                    .onTapGesture {
-                                          addArray()
+                                          action = true
                                    }
                      }
                      .font(.title)
@@ -72,15 +81,5 @@ struct BannerView: View {
                      }
                      .font(.footnote)
               }
-       }
-       
-       func addArray() {
-              let name = "Listen the new Billy Elish album"
-              let information = "On Apple Music"
-              let moreInformation = true
-              let taskDone = false
-              let newTask = TaskData(name: name, information: information, taskDone: taskDone, moreInformation: moreInformation)
-              
-              taskRow.append(newTask)
        }
 }

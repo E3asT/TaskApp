@@ -26,11 +26,11 @@ struct CellTaskView: View {
                             }
                      
                      VStack(alignment: .leading, spacing: 5) {
-                            Text(task.name)
+                            Text(task.title)
                                    .foregroundColor(task.update ? .secondary : .primary)
                             
-                            if task.moreInformation {
-                                   Text(task.information)
+                            if task.isThereNote {
+                                   Text(task.note)
                                           .foregroundColor(.secondary)
                                           .font(.footnote)
                             }
@@ -44,7 +44,7 @@ struct CellTaskView: View {
 
 struct CellTaskView_Previews: PreviewProvider {
        static var previews: some View {
-              CellTaskView(task: TaskData(name: "Dentiste", information: "At 9pm", taskDone: false, moreInformation: true), taskCount: .constant(1))
+              CellTaskView(task: TaskData(title: "Dentiste", note: "At 9pm", taskDone: false, isThereNote: true), taskCount: .constant(1))
        }
 }
 
