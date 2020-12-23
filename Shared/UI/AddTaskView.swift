@@ -12,6 +12,7 @@ struct AddTaskView: View {
        @State var note = ""
        
        @Binding var action: Bool
+       @Binding var taskRow: [TaskData]
        
        var body: some View {
               ZStack {
@@ -28,6 +29,7 @@ struct AddTaskView: View {
                                           .foregroundColor(.blue)
                                           .onTapGesture {
                                                  action = false
+                                                 clearTask()
                                           }
                                    
                                    Spacer()
@@ -36,10 +38,15 @@ struct AddTaskView: View {
                                    
                                    Spacer()
                                    Text("Add")
-                                          .foregroundColor(.secondary)
+                                          .foregroundColor(addColor)
                             }
                             .font(.title2)
                             .padding(.horizontal, 16)
+                            .onTapGesture {
+                                   if title != "" {
+                                          tapGesture()
+                                   }
+                            }
                             
                             VStack() {
                                    TextField("Title", text: $title)
@@ -56,10 +63,40 @@ struct AddTaskView: View {
                      }
               }
        }
+       
+       var addColor: Color {
+              if title != "" { return Color.green }
+              
+              return Color.secondary
+       }
+       
+       func addTask() {
+              let newTitle = title
+              let newNote = note
+              let taskDone = false
+              var isThereANote = false
+              
+              if newNote != "" {
+                     isThereANote = true
+              }
+              
+              taskRow.append(TaskData(title: newTitle, note: newNote, taskDone: taskDone, isThereNote: isThereANote))
+       }
+       
+       func clearTask() {
+              title = ""
+              note = ""
+       }
+       
+       func tapGesture() {
+              addTask()
+              clearTask()
+              action = false
+       }
 }
 
 struct AddTaskView_Previews: PreviewProvider {
        static var previews: some View {
-              AddTaskView(action: .constant(true))
+              AddTaskView(action: .constant(true), taskRow: .constant([TaskData(title: "laal", taskDone: false)]))
        }
 }

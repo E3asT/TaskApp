@@ -17,11 +17,12 @@ struct ContentView: View {
        ]
        @State var taskCount = 0
        @State var action = false
+       @State var viewState = CGSize.zero
        
        var body: some View {
               ZStack {
                      VStack {
-                            BannerView(taskRow: $taskRow ,taskCount: $taskCount, action: $action)
+                            BannerView(taskRow: $taskRow ,taskCount: $taskCount)
                                    .padding(.vertical, 10)
                                    .padding(.horizontal, 16)
                             
@@ -31,13 +32,47 @@ struct ContentView: View {
                                           CellTaskView(task: task, taskCount: $taskCount)
                                    }
                             }
+                            
+                            HStack() {
+                                   Spacer()
+                                   
+                                   Image(systemName: "plus.circle.fill")
+                                          .foregroundColor(.green)
+                                          .onTapGesture {
+                                                 action = true
+                                          }
+                                          .frame(width: 45, height: 45, alignment: .center)
+                                          .background(Color.white)
+                                          .clipShape(Circle())
+                                          .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 5)
+                                   
+                                   Spacer()
+                            }
+                            .font(.system(size: 45))
+                            .padding(.bottom, 50)
                      }
                      
-                     AddTaskView(action: $action)
+                     AddTaskView(action: $action, taskRow: $taskRow)
                             .cornerRadius(15)
-                            .offset(y: action ? 0 : 1000)
-                            .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0.0, y: -5)
-                            .animation(.spring())
+                            .offset(y: action ? viewState.height : 1000)
+                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0.0, y: -5)
+                            .gesture(
+                                   DragGesture()
+                                          .onChanged { value in
+                                                 viewState = value.translation
+                                          }
+                                          
+                                          .onEnded { value in
+                                                 if viewState.height >= 600 {
+                                                        action = false
+                                                 } else if viewState.height >= 100 {
+                                                        viewState.height = 500
+                                                 } else {
+                                                        viewState = .zero
+                                                 }
+                                          }
+                            )
+                            .animation(.easeInOut)
               }
        }
 }
@@ -51,7 +86,6 @@ struct ContentView_Previews: PreviewProvider {
 struct BannerView: View {
        @Binding var taskRow: [TaskData]
        @Binding var taskCount: Int
-       @Binding var action: Bool
        
        var body: some View {
               VStack {
@@ -59,11 +93,6 @@ struct BannerView: View {
                             Text("Today")
                             
                             Spacer()
-                            Image(systemName: "plus.circle.fill")
-                                   .foregroundColor(.green)
-                                   .onTapGesture {
-                                          action = true
-                                   }
                      }
                      .font(.title)
                      .padding(.bottom, 10)
